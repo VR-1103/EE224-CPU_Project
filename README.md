@@ -12,6 +12,7 @@ The main file contains the Datapath and Controller. The architecture of main con
 * Temporary registers - T1,T2,T3,T4
 * MUXes and DeMUXes
 * Signed Extenders, SE7 and SE10
+* LMSM Block
 
 ## Team Members
 * Alisha (21D070011)
