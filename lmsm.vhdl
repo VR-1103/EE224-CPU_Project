@@ -3,11 +3,13 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity lmsm is
+	--LMSM block is required for the instructions LM and SM
+	--It checks which values of the 9 bit immediate are 1 and returns the corresponding address in the Register file as output in corresponding clock cycles
 	port( imm:in std_logic_vector(8 downto 0);
-	q:in std_logic;
+	q:in std_logic; --When q is 1, that is when the count moves to next bit on the left in immediate
 	clock:in std_logic;
 	r_add: out std_logic_vector(2 downto 0);
-	count:out integer);
+	count:out integer); --count gives out which bit in immediate is being scanned at the moment
 end lmsm;
 
 architecture bhv of lmsm is
@@ -28,7 +30,7 @@ end process;
 get_radd : process (imm,count_now)
 --given particular imm, count_now, update what r_add comes next
 begin
-	if (imm(count_now)='0' or count_now>7) then	
+	if (imm(count_now)='0' or count_now>7) then --when immediate's bit is 1 or the count is less than 8 is when the r_add matters
 		null;
 	else
 		if (count_now<4) then
@@ -60,6 +62,6 @@ begin
 	else null;
 	end if;
 end process;
-count <= count_now; --changed
+count <= count_now; 
 end architecture;		
 		
