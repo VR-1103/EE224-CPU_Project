@@ -9,7 +9,7 @@ The main file contains the Datapath and Controller. The architecture of main con
 * 16 bit Arithmetic Logical Unit (ALU) - AND, NAND, SHIFT7
 * Memory 
 * Register File
-* Temporary registers - T1,T2,T3,T4
+* Temporary registers
 * MUXes and DeMUXes
 * Signed Extenders, SE7 and SE10
 * LMSM Block
