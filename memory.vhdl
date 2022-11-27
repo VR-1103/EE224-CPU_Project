@@ -12,9 +12,11 @@ end entity
  memory;
 
 architecture behav of memory is
-type array_of_vectors is array (65536  downto 0) of std_logic_vector(15 downto 0);
+-- address of any location in memory is 16 bit. so memory size is 2^16
+type array_of_vectors is array (65535  downto 0) of std_logic_vector(15 downto 0);
 signal memory_storage : array_of_vectors := (others => "0000000000000000");
 begin
+-- memory read and write is synchronous and has enable signal
 memory_write: process(clock, Mem_W, M_inp, M_add)
     begin
         if(clock' event and clock = '1') then
