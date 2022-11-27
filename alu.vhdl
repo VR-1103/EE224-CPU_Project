@@ -2,6 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity alu is
+	--An ALU that has 2 16 bit inputs, 2 select lines, an output X and 2 flags Carry C and Zero Z
 	port (
 	clock: in std_logic;
 	A: in std_logic_vector(15 downto 0);
@@ -28,16 +29,16 @@ begin
 	begin
 		if (clock'event and clock='1') then
 			case sel is
-				when "00" =>
+				when "00" => -- "00" indicates the Addition operation on A and B inputs
 					X <= add;
 					outp <= add;
 					c <= c_dummy;
 					if (outp = "0000000000000000") then
-						Z<='1';
+						Z<='1'; 
 					else
 						Z<='0';
 					end if;
-				when "01" =>
+				when "01" => -- "01" indicates the NAND operation on A and B inputs
 					X <= A nand B;
 					outp <= A nand B;
 					C <= '0';
@@ -46,7 +47,7 @@ begin
 					else
 						Z<='0';
 					end if;
-				when "10" =>
+				when "10" => --"10" indicates shifting the input A left by 7 positions
 					X <= A(8 downto 0) & "0000000";
 					outp <= A(8 downto 0) &"0000000";
 					C <= '0';
