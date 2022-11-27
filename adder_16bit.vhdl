@@ -4,6 +4,7 @@ library work;
 use work.Gates.all;
 
 entity adder_16bit is
+	--This component adds 16 bit inputs A and B
 	port(A,B: in std_logic_vector(15 downto 0);
 		  S: out std_logic_vector(15 downto 0);
 		  C: out std_logic);
@@ -17,6 +18,7 @@ architecture struct of adder_16bit is
 	signal carry: std_logic_vector(15 downto 0);
 	
 begin
+	--Using the carry generated in the ith adder, the Sum of i+1 is calculated
 	fa0: full_adder port map(A=>A(0),B=>B(0),C=>'0',S=>S(0),Cout=>carry(0));
 	fa1: full_adder port map(A=>A(1),B=>B(1),C=>carry(0),S=>S(1),Cout=>carry(1));
 	fa2: full_adder port map(A=>A(2),B=>B(2),C=>carry(1),S=>S(2),Cout=>carry(2));
