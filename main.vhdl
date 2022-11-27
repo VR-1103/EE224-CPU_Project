@@ -160,7 +160,7 @@ begin
 	m6: MUX_1X2_16BIT port map(rf_d1,alu_x,g,m6_op);
 	m7: MUX_4x1_16BIT port map(alu_x,rf_d2,rf_d1,dm_op1,h,i,m7_op);
 	m8: MUX_8X1_16BIT port map("0000000000000000","0000000000000000","0000000000000000",t3_op,t4_op,pc_op,t2_op,se7_op,r,l,m,m8_op);
-	m9: MUX_4x1_16BIT port map("0000000000000000",se10_op,t3_op,"0000000000000010",n,p,m9_op);
+	m9: MUX_4x1_16BIT port map("0000000000000000",se10_op,t3_op,"0000000000000001",n,p,m9_op);
 	demux: DEMUX_1X2_16BIT port map(m_data,d,dm_op2,dm_op1);
 	
 --Breaking the t1_op signal into the required parts
@@ -420,12 +420,25 @@ state_transition: process(state_present,t1_op,carry_present,zero_present,alu_c,a
 		end if;
 		state_next<=s4;
 	when s4=>
+	       if (t1_op(15 downto 12) = "0011") then
+			e<='0';
+			f<='0';
+		elsif (t1_op(15 downto 12) = "0000") then
+			e<='0';
+			f<='1';
+		elsif (t1_op(15 downto 12) = "0010") then
+			e<='0';
+			f<='1';
+		elsif (t1_op(15 downto 12) = "0001") then
+			e<='1';
+			f<='0';
+		else
+			null;
+		end if;
 		a<='0';
 		b<='0';
 		c<='0';
 		d<='0';
-		e<='0';
-		f<='0';
 		g<='0';
 		h<='0';
 		i<='0';
