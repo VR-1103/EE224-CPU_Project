@@ -120,7 +120,7 @@ architecture bhv of main is
 	signal sel: std_logic_vector(1 downto 0);
 	
 begin
--- Instantiation the components
+-- Instantiation of the components as given in the port map diagram
 	rf: register_file port map(clock,reset,pc_w,rf_w,
 										y,t1_8_6,y,
 										m5_op,m1_op,
@@ -257,7 +257,7 @@ state_transition: process(state_present,t1_op,carry_present,zero_present,alu_c,a
 		elsif (t1_op(15 downto 12) = "0110") then
 			state_next<=s11;
 		elsif (t1_op(15 downto 12) = "0111") then
-			state_next<=s16; --state changed to s16 from s12
+			state_next<=s16; 
 		elsif (t1_op(15 downto 12) = "1100") then
 			state_next<=s13;
 		elsif (t1_op(15 downto 13) = "100") then
@@ -700,7 +700,7 @@ state_transition: process(state_present,t1_op,carry_present,zero_present,alu_c,a
 		t4_w<='0';
 		sel<="00";
 		rf_w<='0';
-		if (t1_op(15 downto 12) = "0100") then
+		if (t1_op(15 downto 12) = "0100") then --decoder to decide which state to go to
 			state_next<=s9;
 			if (t3_op = "0000000000000000") then
 				zero_next<=alu_z;
@@ -796,7 +796,7 @@ state_transition: process(state_present,t1_op,carry_present,zero_present,alu_c,a
 		r<='0';
 		s<='0';
 		sel<="11";
-		state_next<=s12; --it always go to s12 but then t2_w in s12 changes accordingly
+		state_next<=s12; 
 	when s12=>
 		pc_w<='0';
 		t1_w<='0';
