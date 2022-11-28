@@ -185,7 +185,7 @@ clk_process: process(clock,reset)
 end process;
 
 --Process for control signals
-output_process: process(state_present,t1_op,t3_op,t2_op,carry_present,zero_present)
+output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_present,zero_present,lmsm_count)
 	begin
 		a<='0';
 		b<='0';
@@ -364,7 +364,11 @@ output_process: process(state_present,t1_op,t3_op,t2_op,carry_present,zero_prese
 	when s11=>
 		t3_w<='1';
 		mem_r<='1';
-		rf_w<='1';
+		if (t1_8_0 (lmsm_count) = '0') then 
+			rf_w<='0';
+		else 
+			rf_w<='1';
+		end if;
 		e<='1';
 		f<='1';
 		k<='1';
@@ -403,7 +407,11 @@ output_process: process(state_present,t1_op,t3_op,t2_op,carry_present,zero_prese
 		sel<="11";
 	when s16=>
 		t3_w<='1';
-		mem_w<='1';
+		if (t1_8_0 (lmsm_count) = '0') then 
+			mem_w<='0';
+		else 
+			mem_w<='1';
+		end if;
 		e<='1';
 		f<='1';
 		i<='1';
@@ -422,7 +430,7 @@ end process;
 
 
 --State Transition process
-state_transition: process(state_present,t1_op,lmsm_count)
+state_transition: process(state_present,t1_op,lmsm_count,t1_8_0)
 	begin
 	state_next<=state_present;
 	case state_present is
@@ -472,7 +480,12 @@ state_transition: process(state_present,t1_op,lmsm_count)
 	when s10=>
 		state_next<=s1;
 	when s11=>
-		state_next<=s12; 
+		if (t1_8_0 (lmsm_count) = '0') then --if particular immediate value is 0 then next 
+		--left bit is searched without updation of memory address, ie no s12 state
+			state_next<=s11; 
+		else 
+			state_next<=s12;
+		end if; 
 	when s12=>
 		if (lmsm_count = 8) then --lmsm count takes values from 0 to 8 only
 			state_next<=s1;	
@@ -491,7 +504,12 @@ state_transition: process(state_present,t1_op,lmsm_count)
 	when s15=>
 		state_next<=s1;
 	when s16=> 
-		state_next<=s17;
+		if (t1_8_0 (lmsm_count) = '0') then --if particular immediate value is 0 then next 
+		--left bit is searched without updation of memory address, ie no s17 state
+			state_next<=s16; 
+		else 
+			state_next<=s17;
+		end if;
 	when s17=>
 		if (lmsm_count = 8) then --lmsm count = count_now takes values from 0 to 8 only
 			state_next<=s1;	
