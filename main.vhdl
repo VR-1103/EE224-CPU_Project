@@ -199,7 +199,6 @@ output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_presen
 		m<='0';
 		n<='0';
 		p<='0';
-		--q<='0';
 		r<='0';
 		s<='0';
 		mem_r<='0';
@@ -369,7 +368,6 @@ output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_presen
 		e<='1';
 		f<='1';
 		k<='1';
-		--q<='1';
 		sel<="11";
 		if (lmsm_count=8) then
 			lmsm_count <= 0;
@@ -417,7 +415,6 @@ output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_presen
 		e<='1';
 		f<='1';
 		i<='1';
-		--q<='1';
 		s<='1';
 		sel<="11";
 		if (lmsm_count=8) then
