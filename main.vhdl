@@ -100,10 +100,8 @@ architecture bhv of main is
 	
 	component lmsm is
 		port( imm:in std_logic_vector(8 downto 0);
-		q:in std_logic;
-		clock:in std_logic;
 		r_add: out std_logic_vector(2 downto 0);
-		count:out integer);
+		count:in integer);
 	end component;
 
 --Signals used
@@ -115,7 +113,7 @@ architecture bhv of main is
 	signal t1_11_9,t1_5_3,t1_8_6,lmsm_op,y: std_logic_vector(2 downto 0);
 	signal t1_8_0: std_logic_vector(8 downto 0);
 	signal t1_5_0: std_logic_vector(5 downto 0);
-	signal a,b,c,d,e,f,g,h,i,j,k,l,m,n,p,q,r,s,pc_w,t1_w,t2_w,t3_w,t4_w,mem_w,mem_r,rf_w,carry_next,zero_next,carry_present,zero_present: std_logic:='0';
+	signal a,b,c,d,e,f,g,h,i,j,k,l,m,n,p,r,s,pc_w,t1_w,t2_w,t3_w,t4_w,mem_w,mem_r,rf_w,carry_next,zero_next,carry_present,zero_present: std_logic:='0';
 	signal lmsm_count: integer := 0; --lmsm count
 	signal sel: std_logic_vector(1 downto 0);
 	
@@ -149,7 +147,6 @@ begin
 	se10_main: se10 port map(t1_5_0,
 								  se10_op);
 	lmsm_main: lmsm port map(t1_8_0,
-									 q,clock,
 									 lmsm_op,lmsm_count);
 	--lmsm count has count_now value from lmsm component
 	m1: MUX_1X2_16BIT port map(t3_op,alu_x,a,m1_op);
@@ -202,7 +199,7 @@ output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_presen
 		m<='0';
 		n<='0';
 		p<='0';
-		q<='0';
+		--q<='0';
 		r<='0';
 		s<='0';
 		mem_r<='0';
@@ -372,8 +369,13 @@ output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_presen
 		e<='1';
 		f<='1';
 		k<='1';
-		q<='1';
+		--q<='1';
 		sel<="11";
+		if (lmsm_count=8) then
+			lmsm_count <= 0;
+		else 
+			lmsm_count <= lmsm_count +1;
+		end if;
 	when s12=>
 		t2_w<='1';
 		g<='1';
@@ -415,9 +417,14 @@ output_process: process(state_present,alu_c,alu_z,t1_op,t3_op,t2_op,carry_presen
 		e<='1';
 		f<='1';
 		i<='1';
-		q<='1';
+		--q<='1';
 		s<='1';
 		sel<="11";
+		if (lmsm_count=8) then
+			lmsm_count <= 0;
+		else 
+			lmsm_count <= lmsm_count +1;
+		end if;
 	when s17=>
 		t2_w<='1';
 		g<='1';
@@ -480,18 +487,16 @@ state_transition: process(state_present,t1_op,lmsm_count,t1_8_0)
 	when s10=>
 		state_next<=s1;
 	when s11=>
-		if (t1_8_0 (lmsm_count) = '0') then --if particular immediate value is 0 then next 
+		if (lmsm_count=8) then --when final immediate bit is being searched, always goes to s1
+			state_next<=s1;
+		elsif (t1_8_0 (lmsm_count) = '0') then --if particular immediate value is 0 then next 
 		--left bit is searched without updation of memory address, ie no s12 state
-			state_next<=s11; 
+			state_next<=s11;	
 		else 
 			state_next<=s12;
 		end if; 
 	when s12=>
-		if (lmsm_count = 8) then --lmsm count takes values from 0 to 8 only
-			state_next<=s1;	
-		else 
-			state_next<=s11;
-		end if;
+		state_next<=s11;
 	when s13=>
 		state_next<=s1;
 	when s14=>
@@ -504,18 +509,16 @@ state_transition: process(state_present,t1_op,lmsm_count,t1_8_0)
 	when s15=>
 		state_next<=s1;
 	when s16=> 
-		if (t1_8_0 (lmsm_count) = '0') then --if particular immediate value is 0 then next 
+		if (lmsm_count=8) then --when final immediate bit is being searched, always goes to s1
+			state_next<=s1;
+		elsif (t1_8_0 (lmsm_count) = '0') then --if particular immediate value is 0 then next 
 		--left bit is searched without updation of memory address, ie no s17 state
 			state_next<=s16; 
 		else 
 			state_next<=s17;
 		end if;
 	when s17=>
-		if (lmsm_count = 8) then --lmsm count = count_now takes values from 0 to 8 only
-			state_next<=s1;	
-		else 
-			state_next<=s16;
-		end if;
+		state_next<=s16;
 	when others=>
 		null;
 	end case;

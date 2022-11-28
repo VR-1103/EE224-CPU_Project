@@ -1,5 +1,5 @@
 Analysis & Synthesis report for main
-Mon Nov 28 10:40:11 2022
+Mon Nov 28 11:38:35 2022
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -57,7 +57,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Nov 28 10:40:11 2022       ;
+; Analysis & Synthesis Status        ; Successful - Mon Nov 28 11:38:35 2022       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; main                                        ;
 ; Top-level Entity Name              ; main                                        ;
@@ -314,14 +314,7 @@ Encoding Type:  One-Hot
 ; alu:alu_main|outp[15]                                                                                 ; Merged with alu:alu_main|X[15]                 ;
 ; alu:alu_main|outp[4]                                                                                  ; Merged with alu:alu_main|X[4]                  ;
 ; alu:alu_main|outp[5]                                                                                  ; Merged with alu:alu_main|X[5]                  ;
-; temporary_register:t1|temp_read[2]                                                                    ; Lost fanout                                    ;
-; lmsm:lmsm_main|count_now[1]                                                                           ; Lost fanout                                    ;
-; temporary_register:t1|temp_read[1]                                                                    ; Lost fanout                                    ;
-; lmsm:lmsm_main|count_now[0]                                                                           ; Lost fanout                                    ;
-; temporary_register:t1|temp_read[0,3..7]                                                               ; Lost fanout                                    ;
-; lmsm:lmsm_main|count_now[2]                                                                           ; Lost fanout                                    ;
-; temporary_register:t1|temp_read[8]                                                                    ; Lost fanout                                    ;
-; lmsm:lmsm_main|count_now[3]                                                                           ; Lost fanout                                    ;
+; temporary_register:t1|temp_read[0..8]                                                                 ; Lost fanout                                    ;
 ; state_present.s16                                                                                     ; Lost fanout                                    ;
 ; state_present.s10                                                                                     ; Lost fanout                                    ;
 ; temporary_register:t3|temp_read[0..3,6..15]                                                           ; Lost fanout                                    ;
@@ -329,7 +322,6 @@ Encoding Type:  One-Hot
 ; state_present.s9                                                                                      ; Lost fanout                                    ;
 ; temporary_register:t3|temp_read[4,5]                                                                  ; Lost fanout                                    ;
 ; state_present.s11                                                                                     ; Lost fanout                                    ;
-; lmsm:lmsm_main|count_now[4..31]                                                                       ; Lost fanout                                    ;
 ; state_present.s17                                                                                     ; Lost fanout                                    ;
 ; temporary_register:t1|temp_read[12..15]                                                               ; Lost fanout                                    ;
 ; state_present.s2                                                                                      ; Lost fanout                                    ;
@@ -340,17 +332,14 @@ Encoding Type:  One-Hot
 ; carry_present                                                                                         ; Lost fanout                                    ;
 ; zero_present                                                                                          ; Lost fanout                                    ;
 ; state_present.s3                                                                                      ; Lost fanout                                    ;
-; lmsm:lmsm_main|r_add_now[1]                                                                           ; Lost fanout                                    ;
 ; temporary_register:t1|temp_read[10]                                                                   ; Lost fanout                                    ;
 ; register_file:rf|registers[1][0]                                                                      ; Lost fanout                                    ;
-; lmsm:lmsm_main|r_add_now[0]                                                                           ; Lost fanout                                    ;
 ; temporary_register:t1|temp_read[9]                                                                    ; Lost fanout                                    ;
 ; register_file:rf|registers[0][0]                                                                      ; Lost fanout                                    ;
 ; register_file:rf|registers[3][0]                                                                      ; Lost fanout                                    ;
 ; register_file:rf|registers[5][0]                                                                      ; Lost fanout                                    ;
 ; register_file:rf|registers[6][0]                                                                      ; Lost fanout                                    ;
 ; register_file:rf|registers[4][0]                                                                      ; Lost fanout                                    ;
-; lmsm:lmsm_main|r_add_now[2]                                                                           ; Lost fanout                                    ;
 ; temporary_register:t1|temp_read[11]                                                                   ; Lost fanout                                    ;
 ; alu:alu_main|X[0]                                                                                     ; Lost fanout                                    ;
 ; state_present.s6                                                                                      ; Lost fanout                                    ;
@@ -491,7 +480,7 @@ Encoding Type:  One-Hot
 ; register_file:rf|registers[7][15]                                                                     ; Lost fanout                                    ;
 ; alu:alu_main|X[7..15]                                                                                 ; Lost fanout                                    ;
 ; memory:memory_main|altsyncram:memory_storage_rtl_0|altsyncram_foh1:auto_generated|address_reg_b[0..2] ; Lost fanout                                    ;
-; Total Number of Removed Registers = 283                                                               ;                                                ;
+; Total Number of Removed Registers = 248                                                               ;                                                ;
 +-------------------------------------------------------------------------------------------------------+------------------------------------------------+
 
 
@@ -500,37 +489,21 @@ Encoding Type:  One-Hot
 +-------------------------------------+--------------------------------+-----------------------------------------------------------------------------------------------------+
 ; Register name                       ; Reason for Removal             ; Registers Removed due to This Register                                                              ;
 +-------------------------------------+--------------------------------+-----------------------------------------------------------------------------------------------------+
-; lmsm:lmsm_main|count_now[1]         ; Lost Fanouts                   ; lmsm:lmsm_main|count_now[0], state_present.s16, state_present.s11,                                  ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[31], lmsm:lmsm_main|count_now[21],                                         ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[20], lmsm:lmsm_main|count_now[19],                                         ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[18], lmsm:lmsm_main|count_now[17],                                         ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[16], lmsm:lmsm_main|count_now[15],                                         ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[14], lmsm:lmsm_main|count_now[13],                                         ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[12], lmsm:lmsm_main|count_now[11],                                         ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[10], lmsm:lmsm_main|count_now[9],                                          ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[8], lmsm:lmsm_main|count_now[7],                                           ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[6], lmsm:lmsm_main|count_now[5],                                           ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[4], lmsm:lmsm_main|count_now[22],                                          ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[23], lmsm:lmsm_main|count_now[24],                                         ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[25], lmsm:lmsm_main|count_now[26],                                         ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[27], lmsm:lmsm_main|count_now[28],                                         ;
-;                                     ;                                ; lmsm:lmsm_main|count_now[29], lmsm:lmsm_main|count_now[30], state_present.s17,                      ;
-;                                     ;                                ; temporary_register:t1|temp_read[15], temporary_register:t1|temp_read[14],                           ;
-;                                     ;                                ; temporary_register:t1|temp_read[13], temporary_register:t1|temp_read[12],                           ;
-;                                     ;                                ; state_present.s2                                                                                    ;
 ; temporary_register:t3|temp_read[0]  ; Lost Fanouts                   ; state_present.s9, register_file:rf|registers[2][0], state_present.s4, state_present.s5,             ;
-;                                     ;                                ; carry_present, zero_present, state_present.s3, lmsm:lmsm_main|r_add_now[1],                         ;
-;                                     ;                                ; temporary_register:t1|temp_read[10], register_file:rf|registers[1][0],                              ;
-;                                     ;                                ; lmsm:lmsm_main|r_add_now[0], temporary_register:t1|temp_read[9],                                    ;
+;                                     ;                                ; carry_present, zero_present, state_present.s3, temporary_register:t1|temp_read[10],                 ;
+;                                     ;                                ; register_file:rf|registers[1][0], temporary_register:t1|temp_read[9],                               ;
 ;                                     ;                                ; register_file:rf|registers[3][0], register_file:rf|registers[5][0],                                 ;
 ;                                     ;                                ; register_file:rf|registers[6][0], temporary_register:t1|temp_read[11],                              ;
 ;                                     ;                                ; alu:alu_main|X[0], state_present.s6, state_present.s7, alu:alu_main|C, alu:alu_main|Z               ;
-; temporary_register:t4|temp_read[2]  ; Stuck at GND                   ; temporary_register:t1|temp_read[2], state_present.s1, state_present.s12,                            ;
-;                                     ; due to stuck port clock_enable ; state_present.s13, state_present.s15, temporary_register:t2|temp_read[2],                           ;
+; temporary_register:t4|temp_read[2]  ; Stuck at GND                   ; temporary_register:t1|temp_read[2], state_present.s1, state_present.s13,                            ;
+;                                     ; due to stuck port clock_enable ; state_present.s15, temporary_register:t2|temp_read[2],                                              ;
 ;                                     ;                                ; register_file:rf|registers[7][2],                                                                   ;
 ;                                     ;                                ; memory:memory_main|altsyncram:memory_storage_rtl_0|altsyncram_foh1:auto_generated|address_reg_b[2], ;
 ;                                     ;                                ; memory:memory_main|altsyncram:memory_storage_rtl_0|altsyncram_foh1:auto_generated|address_reg_b[1], ;
 ;                                     ;                                ; memory:memory_main|altsyncram:memory_storage_rtl_0|altsyncram_foh1:auto_generated|address_reg_b[0]  ;
+; state_present.s16                   ; Lost Fanouts                   ; state_present.s11, state_present.s17, temporary_register:t1|temp_read[15],                          ;
+;                                     ;                                ; temporary_register:t1|temp_read[14], temporary_register:t1|temp_read[13],                           ;
+;                                     ;                                ; temporary_register:t1|temp_read[12], state_present.s2, state_present.s12                            ;
 ; temporary_register:t3|temp_read[4]  ; Lost Fanouts                   ; register_file:rf|registers[2][4], register_file:rf|registers[1][4],                                 ;
 ;                                     ;                                ; register_file:rf|registers[0][4], register_file:rf|registers[3][4],                                 ;
 ;                                     ;                                ; alu:alu_main|X[4], register_file:rf|registers[5][4],                                                ;
@@ -640,21 +613,19 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------+
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |main|lmsm:lmsm_main|count_now[7]                                           ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |main|register_file:rf|registers[7][1]                                      ;
-; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |main|alu:alu_main|outp[1]                                                  ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |main|register_file:rf|registers[7][0]                                      ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |main|alu:alu_main|X[1]                                                     ;
 ; 3:1                ; 18 bits   ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |main|alu:alu_main|X[7]                                                     ;
-; 4:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |main|register_file:rf|registers[7][3]                                      ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |main|lmsm:lmsm_main|r_add_now[1]                                           ;
-; 11:1               ; 14 bits   ; 98 LEs        ; 98 LEs               ; 0 LEs                  ; Yes        ; |main|temporary_register:t3|temp_read[3]                                    ;
-; 18:1               ; 2 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |main|temporary_register:t3|temp_read[4]                                    ;
+; 4:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |main|register_file:rf|registers[7][7]                                      ;
+; 11:1               ; 14 bits   ; 98 LEs        ; 98 LEs               ; 0 LEs                  ; Yes        ; |main|temporary_register:t3|temp_read[14]                                   ;
+; 18:1               ; 2 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |main|temporary_register:t3|temp_read[5]                                    ;
 ; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |main|MUX_4x1_16BIT:m2|MUX_4X1_4BIT:M1|MUX_4_1:M1|MUX_2_1:MUX2_3|OR_2:OR1|Y ;
 ; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|MUX_4x1_3BIT:m4|MUX_4_1:M3|MUX_2_1:MUX2_3|OR_2:OR1|Y                  ;
 ; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |main|MUX_8X1_16BIT:m8|MUX_8X1_4BIT:M2|MUX8to1:M1|MUX_2_1:M3|OR_2:OR1|Y     ;
 ; 8:1                ; 14 bits   ; 70 LEs        ; 70 LEs               ; 0 LEs                  ; No         ; |main|register_file:rf|Mux8                                                 ;
-; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |main|MUX_8X1_16BIT:m8|MUX_8X1_4BIT:M3|MUX8to1:M1|MUX_2_1:M3|OR_2:OR1|Y     ;
-; 8:1                ; 3 bits    ; 15 LEs        ; 12 LEs               ; 3 LEs                  ; No         ; |main|Selector32                                                            ;
-; 23:1               ; 7 bits    ; 105 LEs       ; 56 LEs               ; 49 LEs                 ; No         ; |main|Selector25                                                            ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |main|MUX_8X1_16BIT:m8|MUX_8X1_4BIT:M3|MUX8to1:M2|MUX_2_1:M3|OR_2:OR1|Y     ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 12 LEs               ; 3 LEs                  ; No         ; |main|Selector46                                                            ;
+; 23:1               ; 7 bits    ; 105 LEs       ; 56 LEs               ; 49 LEs                 ; No         ; |main|Selector34                                                            ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------+
 
 
@@ -833,7 +804,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Mon Nov 28 10:40:01 2022
+    Info: Processing started: Mon Nov 28 11:38:24 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off main -c main
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -886,7 +857,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file main.vh
     Info (12022): Found design unit 1: main-bhv File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 17
     Info (12023): Found entity 1: main File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 13
 Info (12021): Found 2 design units, including 1 entities, in source file lmsm.vhdl
-    Info (12022): Found design unit 1: lmsm-bhv File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/lmsm.vhdl Line: 13
+    Info (12022): Found design unit 1: lmsm-bhv File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/lmsm.vhdl Line: 11
     Info (12023): Found entity 1: lmsm File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/lmsm.vhdl Line: 5
 Info (12021): Found 17 design units, including 8 entities, in source file gates.vhdl
     Info (12022): Found design unit 1: Gates File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/Gates.vhdl Line: 7
@@ -925,36 +896,72 @@ Info (12021): Found 2 design units, including 1 entities, in source file adder_1
     Info (12022): Found design unit 1: adder_16bit-struct File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/adder_16bit.vhdl Line: 13
     Info (12023): Found entity 1: adder_16bit File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/adder_16bit.vhdl Line: 6
 Info (12127): Elaborating entity "main" for the top level hierarchy
-Warning (10492): VHDL Process Statement warning at main.vhdl(367): signal "t1_8_0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 367
-Warning (10492): VHDL Process Statement warning at main.vhdl(410): signal "t1_8_0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 410
-Warning (10631): VHDL Process Statement warning at main.vhdl(188): inferring latch(es) for signal or variable "carry_next", which holds its previous value in one or more paths through the process File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 188
-Warning (10631): VHDL Process Statement warning at main.vhdl(188): inferring latch(es) for signal or variable "zero_next", which holds its previous value in one or more paths through the process File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 188
-Info (10041): Inferred latch for "zero_next" at main.vhdl(188) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 188
-Info (10041): Inferred latch for "carry_next" at main.vhdl(188) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 188
-Info (12128): Elaborating entity "register_file" for hierarchy "register_file:rf" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 124
-Info (12128): Elaborating entity "memory" for hierarchy "memory:memory_main" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 128
-Info (12128): Elaborating entity "temporary_register" for hierarchy "temporary_register:t1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 131
-Info (12128): Elaborating entity "alu" for hierarchy "alu:alu_main" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 143
+Warning (10492): VHDL Process Statement warning at main.vhdl(364): signal "t1_8_0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 364
+Warning (10492): VHDL Process Statement warning at main.vhdl(412): signal "t1_8_0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 412
+Warning (10631): VHDL Process Statement warning at main.vhdl(185): inferring latch(es) for signal or variable "carry_next", which holds its previous value in one or more paths through the process File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Warning (10631): VHDL Process Statement warning at main.vhdl(185): inferring latch(es) for signal or variable "zero_next", which holds its previous value in one or more paths through the process File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Warning (10631): VHDL Process Statement warning at main.vhdl(185): inferring latch(es) for signal or variable "lmsm_count", which holds its previous value in one or more paths through the process File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[0]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[1]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[2]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[3]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[4]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[5]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[6]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[7]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[8]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[9]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[10]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[11]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[12]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[13]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[14]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[15]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[16]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[17]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[18]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[19]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[20]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[21]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[22]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[23]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[24]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[25]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[26]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[27]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[28]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[29]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[30]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "lmsm_count[31]" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "zero_next" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (10041): Inferred latch for "carry_next" at main.vhdl(185) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 185
+Info (12128): Elaborating entity "register_file" for hierarchy "register_file:rf" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 122
+Info (12128): Elaborating entity "memory" for hierarchy "memory:memory_main" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 126
+Info (12128): Elaborating entity "temporary_register" for hierarchy "temporary_register:t1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 129
+Info (12128): Elaborating entity "alu" for hierarchy "alu:alu_main" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 141
 Info (12128): Elaborating entity "adder_16bit" for hierarchy "alu:alu_main|adder_16bit:adder" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/alu.vhdl Line: 27
 Info (12128): Elaborating entity "full_adder" for hierarchy "alu:alu_main|adder_16bit:adder|full_adder:fa0" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/adder_16bit.vhdl Line: 22
 Info (12128): Elaborating entity "HALF_ADDER" for hierarchy "alu:alu_main|adder_16bit:adder|full_adder:fa0|HALF_ADDER:HA1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/full_adder.vhdl Line: 13
 Info (12128): Elaborating entity "OR_2" for hierarchy "alu:alu_main|adder_16bit:adder|full_adder:fa0|OR_2:OR1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/full_adder.vhdl Line: 15
-Info (12128): Elaborating entity "se7" for hierarchy "se7:se7_main" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 147
-Info (12128): Elaborating entity "se10" for hierarchy "se10:se10_main" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 149
-Info (12128): Elaborating entity "lmsm" for hierarchy "lmsm:lmsm_main" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 151
-Info (12128): Elaborating entity "MUX_1X2_16BIT" for hierarchy "MUX_1X2_16BIT:m1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 155
+Info (12128): Elaborating entity "se7" for hierarchy "se7:se7_main" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 145
+Info (12128): Elaborating entity "se10" for hierarchy "se10:se10_main" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 147
+Info (12128): Elaborating entity "lmsm" for hierarchy "lmsm:lmsm_main" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 149
+Warning (10631): VHDL Process Statement warning at lmsm.vhdl(14): inferring latch(es) for signal or variable "r_add", which holds its previous value in one or more paths through the process File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/lmsm.vhdl Line: 14
+Info (10041): Inferred latch for "r_add[0]" at lmsm.vhdl(14) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/lmsm.vhdl Line: 14
+Info (10041): Inferred latch for "r_add[1]" at lmsm.vhdl(14) File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/lmsm.vhdl Line: 14
+Info (12128): Elaborating entity "MUX_1X2_16BIT" for hierarchy "MUX_1X2_16BIT:m1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 152
 Info (12128): Elaborating entity "MUX_1X2_4BIT" for hierarchy "MUX_1X2_16BIT:m1|MUX_1X2_4BIT:M1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/MUX_2X1_16BIT.vhdl Line: 20
 Info (12128): Elaborating entity "MUX_2_1" for hierarchy "MUX_1X2_16BIT:m1|MUX_1X2_4BIT:M1|MUX_2_1:M1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/MUX_2X1_4BIT.vhdl Line: 20
 Info (12128): Elaborating entity "INVERTER" for hierarchy "MUX_1X2_16BIT:m1|MUX_1X2_4BIT:M1|MUX_2_1:M1|INVERTER:NOT1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/MUX2to1.vhd Line: 15
 Info (12128): Elaborating entity "AND_2" for hierarchy "MUX_1X2_16BIT:m1|MUX_1X2_4BIT:M1|MUX_2_1:M1|AND_2:AND1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/MUX2to1.vhd Line: 16
-Info (12128): Elaborating entity "MUX_4x1_16BIT" for hierarchy "MUX_4x1_16BIT:m2" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 156
+Info (12128): Elaborating entity "MUX_4x1_16BIT" for hierarchy "MUX_4x1_16BIT:m2" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 153
 Info (12128): Elaborating entity "MUX_4X1_4BIT" for hierarchy "MUX_4x1_16BIT:m2|MUX_4X1_4BIT:M1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/MUX_4X1_16BIT.vhdl Line: 21
 Info (12128): Elaborating entity "MUX_4_1" for hierarchy "MUX_4x1_16BIT:m2|MUX_4X1_4BIT:M1|MUX_4_1:M1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/MUX_4X1_4BIT.vhdl Line: 20
-Info (12128): Elaborating entity "MUX_4x1_3BIT" for hierarchy "MUX_4x1_3BIT:m4" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 158
-Info (12128): Elaborating entity "MUX_8X1_16BIT" for hierarchy "MUX_8X1_16BIT:m8" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 162
+Info (12128): Elaborating entity "MUX_4x1_3BIT" for hierarchy "MUX_4x1_3BIT:m4" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 155
+Info (12128): Elaborating entity "MUX_8X1_16BIT" for hierarchy "MUX_8X1_16BIT:m8" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 159
 Info (12128): Elaborating entity "MUX_8X1_4BIT" for hierarchy "MUX_8X1_16BIT:m8|MUX_8X1_4BIT:M1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/MUX_8X1_16BIT.vhdl Line: 27
 Info (12128): Elaborating entity "MUX8to1" for hierarchy "MUX_8X1_16BIT:m8|MUX_8X1_4BIT:M1|MUX8to1:M1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/MUX_8X1_4BIT.vhdl Line: 26
-Info (12128): Elaborating entity "DEMUX_1X2_16BIT" for hierarchy "DEMUX_1X2_16BIT:demux" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 164
+Info (12128): Elaborating entity "DEMUX_1X2_16BIT" for hierarchy "DEMUX_1X2_16BIT:demux" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/main.vhdl Line: 161
 Info (12128): Elaborating entity "DEMUX_1X2_4BIT" for hierarchy "DEMUX_1X2_16BIT:demux|DEMUX_1X2_4BIT:M1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/DEMUX_1X2_16BIT.vhdl Line: 21
 Info (12128): Elaborating entity "DEMUX1to2" for hierarchy "DEMUX_1X2_16BIT:demux|DEMUX_1X2_4BIT:M1|DEMUX1to2:M1" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/DEMUX_1X2_4BIT.vhdl Line: 17
 Warning (276027): Inferred dual-clock RAM node "memory:memory_main|memory_storage_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
@@ -1128,7 +1135,7 @@ Warning (14284): Synthesized away the following node(s):
         Warning (14320): Synthesized away node "memory:memory_main|altsyncram:memory_storage_rtl_0|altsyncram_foh1:auto_generated|ram_block1a125" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/db/altsyncram_foh1.tdf Line: 4048
         Warning (14320): Synthesized away node "memory:memory_main|altsyncram:memory_storage_rtl_0|altsyncram_foh1:auto_generated|ram_block1a126" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/db/altsyncram_foh1.tdf Line: 4080
         Warning (14320): Synthesized away node "memory:memory_main|altsyncram:memory_storage_rtl_0|altsyncram_foh1:auto_generated|ram_block1a127" File: C:/Users/csmaa/Documents/GitHub/EE224-CPU_Project/db/altsyncram_foh1.tdf Line: 4112
-Info (17049): 249 registers lost all their fanouts during netlist optimizations.
+Info (17049): 214 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
@@ -1137,10 +1144,10 @@ Warning (21074): Design contains 2 input pin(s) that do not drive logic
 Info (21057): Implemented 2 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 139 warnings
-    Info: Peak virtual memory: 4840 megabytes
-    Info: Processing ended: Mon Nov 28 10:40:11 2022
-    Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:21
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 141 warnings
+    Info: Peak virtual memory: 4843 megabytes
+    Info: Processing ended: Mon Nov 28 11:38:35 2022
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:24
 
 
