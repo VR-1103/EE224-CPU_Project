@@ -14,53 +14,57 @@ entity alu is
 end alu;
 
 architecture a1 of alu is
-	component adder_16bit is
-		port(A,B: in std_logic_vector(15 downto 0);
-			  S: out std_logic_vector(15 downto 0);
-			  C: out std_logic);
-	end component;
-
-	signal add: std_logic_vector(15 downto 0);
-	signal outp: std_logic_vector(15 downto 0);
-	signal c_dummy : std_logic;
+  function add(A: in std_logic_vector(15 downto 0);
+    B: in std_logic_vector(15 downto 0))
+    return std_logic_vector is
+	   variable sum : std_logic_vector(15 downto 0) := (others => '0');
+		variable carry : std_logic_vector(15 downto 0) := (others => '0');
+    begin
+		L1: for i in 0 to 15 loop
+		  if i = 0 then
+		    sum(i) := A(i) xor B(i) xor '0';
+			 carry(i) := A(i) and B(i);
+		  else 
+		    sum(i) := A(i) xor B(i) xor carry(i-1);
+			 carry(i) := (A(i) and B(i)) or (carry(i-1) and (A(i) xor B(i)));
+		  end if;
+		end loop L1;
+    return carry(15) & sum;
+  end add;
+  
 begin
-	adder: adder_16bit port map(A=>A,B=>B,S=>add,C=>C_dummy);
-	process(A,B,clock)
-	begin
-		if (clock'event and clock='1') then
-			case sel is
-				when "00" => -- "00" indicates the Addition operation on A and B inputs
-					X <= add;
-					outp <= add;
-					c <= c_dummy;
-					if (outp = "0000000000000000") then
-						Z<='1'; 
-					else
-						Z<='0';
-					end if;
-				when "01" => -- "01" indicates the NAND operation on A and B inputs
-					X <= A nand B;
-					outp <= A nand B;
-					C <= '0';
-					if (outp = "0000000000000000") then
-						Z<='1';
-					else
-						Z<='0';
-					end if;
-				when "10" => --"10" indicates shifting the input A left by 7 positions
-					X <= A(8 downto 0) & "0000000";
-					outp <= A(8 downto 0) &"0000000";
-					C <= '0';
-					if (outp = "0000000000000000") then
-						Z<='1';
-					else
-						Z<='0';
-					end if;
-				when others =>
-					null;
-			end case;
+alu_proc: process(A, B, sel)
+variable temp: std_logic_vector(16 downto 0);
+begin
+    if sel="00" then 
+      temp := add(A,B);
+	   X<= temp(15 downto 0);
+	   C <= temp(16);
+		if temp(15 downto 0)="0000000000000000" then
+		  Z<='1';
 		else
-			null;
+		  Z<='0';
 		end if;
-	end process;
+    elsif sel="01" then
+      temp := '0'&(A nand B);
+		X<=temp(15 downto 0);
+		if temp="00000000000000000" then
+		  Z<='1';
+		else
+		  Z <='0';
+		end if;
+    elsif sel="10" then
+      temp := '0' & A(8 downto 0) &"0000000";
+		X <= temp(15 downto 0);
+		C <= '0';
+	   if temp="00000000000000000" then
+		  Z <= '1';
+	   else
+	     Z <= '0';
+	   end if;
+    else
+      null;
+    end if;
+	
+end process;
 end a1;

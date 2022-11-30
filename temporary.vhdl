@@ -11,16 +11,22 @@ entity temporary_register is
 end entity temporary_register;
 -- temp_write is input port for writing and temp_read is output port for temp reg
 architecture behav of temporary_register is
+
+signal dummy: std_logic_vector(15 downto 0);
+
 begin 
+
+temp_read <= dummy;
+
 -- writing is synchronous and teemp_W high enable
-temp_writing : process(clock, reset, temp_write, temp_w)
+temp_writing : process(temp_w,clock,reset)
     begin
         if (reset = '1') then
-            temp_read <= "0000000000000000";
+            dummy <= "0000000000000000";
         
         elsif(clock' event and clock = '1') then
-            if (temp_W = '1') then
-                temp_read <= temp_write;
+            if (temp_w='1') then
+                dummy <= temp_write;
             else
                 null;
             end if;
@@ -29,4 +35,3 @@ temp_writing : process(clock, reset, temp_write, temp_w)
         end if;
     end process temp_writing;
 end architecture behav;
-    

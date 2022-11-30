@@ -3,15 +3,14 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity lmsm is
-	port( imm:in std_logic_vector(8 downto 0);
-		r_add: out std_logic_vector(2 downto 0);
-		count:in integer);
+	port(r_add: out std_logic_vector(2 downto 0);
+		count:in integer range 0 to 8);
 end lmsm;
 
 architecture bhv of lmsm is 
 begin
 
-get_radd : process (imm,count)
+get_radd : process (count)
 --given particular imm, count, r_add corresponding is given out
 begin
 	if (count<4) then
